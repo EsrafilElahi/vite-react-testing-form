@@ -1,17 +1,18 @@
-.form {
-  width: 300px;
-  margin: 0 auto;
-}
-
 h1 {
   text-align: center;
 }
 
+div{
+  margin: 35px 0;
+}
+
 input {
-  width: 100%;
+  width: -webkit-fill-available;
   padding: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 button {
@@ -19,5 +20,17 @@ button {
   color: #fff;
   padding: 10px;
   border: none;
+  border-radius: 5px;
+  width: 150px;
+  margin-top: 20px;
   cursor: pointer;
+  padding: 13px 0;
+}
+
+p{
+  margin: 0;
+}
+
+.error{
+  color: red;
 }

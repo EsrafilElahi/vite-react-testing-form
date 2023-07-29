@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import '../styles/styles.css'
+import '../styles/styles.css';
+
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -64,9 +65,8 @@ const Form = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className={errors.email ? "error" : ""}
         />
-        {errors.email && <p className="error-text">{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="password">Password</label>
@@ -76,9 +76,8 @@ const Form = () => {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className={errors.password ? "error" : ""}
         />
-        {errors.password && <p className="error-text">{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>}
       </div>
       <div>
         <label htmlFor="confirmPassword">Confirm Password</label>
@@ -88,10 +87,9 @@ const Form = () => {
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
-          className={errors.confirmPassword ? "error" : ""}
         />
         {errors.confirmPassword && (
-          <p className="error-text">{errors.confirmPassword}</p>
+          <p className="error">{errors.confirmPassword}</p>
         )}
       </div>
       <button type="submit">Submit</button>

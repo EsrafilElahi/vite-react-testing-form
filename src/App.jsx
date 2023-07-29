@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Form from './component/Form';
+import './styles/styles.css'
 
 
 function App() {
