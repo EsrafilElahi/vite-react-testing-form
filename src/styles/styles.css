@@ -1,0 +1,23 @@
+.form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
