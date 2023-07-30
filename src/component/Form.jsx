@@ -57,8 +57,9 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* email */}
       <div>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">email</label>
         <input
           type="email"
           id="email"
@@ -68,8 +69,10 @@ const Form = () => {
         />
         {errors.email && <p className="error">{errors.email}</p>}
       </div>
+
+      {/* password */}
       <div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">password</label>
         <input
           type="password"
           id="password"
@@ -79,8 +82,10 @@ const Form = () => {
         />
         {errors.password && <p className="error">{errors.password}</p>}
       </div>
+
+      {/* confirm password */}
       <div>
-        <label htmlFor="confirmPassword">Confirm Password</label>
+        <label htmlFor="confirmPassword">confirm password</label>
         <input
           type="password"
           id="confirmPassword"
