@@ -28,7 +28,7 @@ test('should be able to type an email', async () => {
   render(<Form />);
 
   // find elements with matcher
-  const emailElement = screen.getByRole("textbox", { name: /email/i });
+  const emailElement = screen.queryByRole("textbox", { name: /email/i });
 
   // type email
   await userEvent.type(emailElement, "esrafil.elahi@gmail.com");
@@ -42,7 +42,7 @@ test("should be able to type a password", async () => {
   render(<Form />);
 
   // find element
-  const passwordElement = screen.getByLabelText("password");
+  const passwordElement = screen.queryByLabelText("password");
 
   // type password
   await userEvent.type(passwordElement, "123456")
@@ -57,7 +57,7 @@ test('should be able to type a confirm password', async () => {
   render(<Form />);
 
   // find element
-  const confirmPasswordElement = screen.getByLabelText("confirm password");
+  const confirmPasswordElement = screen.queryByLabelText("confirm password");
 
   // type confirm password
   await userEvent.type(confirmPasswordElement, "123456");
