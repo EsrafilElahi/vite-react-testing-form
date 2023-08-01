@@ -1,14 +1,25 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import Form from '../component/Form.jsx';
-import { cleanup } from '@testing-library/react';
-import { beforeEach } from 'vitest';
+import { server } from '../mocks/server.js'
 
 
-afterEach(cleanup);
+beforeAll(() => {
+  server.listen();
+});
+
+afterEach(() => {
+  cleanup();
+  server.resetHandlers();
+});
+
+afterAll(() => {
+  server.close();
+});
+
 
 const clickSubmitButton = async () => {
   const submitBtn = screen.getByRole("button", { name: /submit/i });
@@ -17,10 +28,10 @@ const clickSubmitButton = async () => {
 
 describe("Form Tests", () => {
   beforeEach(() => {
-    render(<Form />)
-  })
+    render(<Form />);
+  });
 
-  describe("Init & Success", () => {
+  describe("Init", () => {
     // init, type, click
     test('all imputs should be empty in initial form', () => {    
       // find elements with matcher
@@ -66,7 +77,7 @@ describe("Form Tests", () => {
       expect(confirmPasswordElement).toHaveValue("123456")
     
     })
-  })
+  });
 
   describe("Error", () => {
     // Email
@@ -171,5 +182,29 @@ describe("Form Tests", () => {
       const passwordErrorMessageInvalid2 = screen.queryByText("Passwords don't match");
       expect(passwordErrorMessageInvalid2).toBeInTheDocument()
     })
+  });
+
+  describe("Success", () => {
+    
+    test("success login with post api", async () => {
+      // find elements with matcher
+      const emailElement = screen.getByRole("textbox", { name: /email/i });
+      const passwordElement = screen.getByLabelText("password");
+      const confirmPasswordElement = screen.getByLabelText("confirm password");
+
+      // type valid
+      await userEvent.type(emailElement, "esrafil.elahi@gmail.com");
+      await userEvent.type(passwordElement, "123456");
+      await userEvent.type(confirmPasswordElement, "123456");
+
+      // submit
+      await clickSubmitButton();
+
+      // assertion
+      const loggedIn = screen.getByText("loggedIn");
+      expect(loggedIn).toBeInTheDocument();
+
+    });
+
   })
 })
