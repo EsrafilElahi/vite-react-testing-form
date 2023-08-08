@@ -1,10 +1,36 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
+import axios from 'axios'
 import Form from '../component/Form.jsx';
 import { server } from '../mocks/server.js'
+
+
+
+jest.mock('axios');
+
+const fakeUsers = [{
+  "id": 1,
+  "name": "Test User 1",
+  "username": "testuser1",
+}, {
+  "id": 2,
+  "name": "Test User 2",
+  "username": "testuser2",
+}];
+
+describe('App component', () => {
+
+  test('it displays a row for each user', async () => {
+    axios.get.mockResolvedValue({ data: fakeUsers });
+    render(<Form />);
+
+
+    const userList = await waitFor(() => screen.findAllByTestId('user-item'));
+    expect(userList).toHaveLength(2);
+  });
+});
 
 
 beforeAll(() => {
